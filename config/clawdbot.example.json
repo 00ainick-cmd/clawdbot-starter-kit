@@ -1,0 +1,61 @@
+{
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "apiKey": "YOUR_ANTHROPIC_API_KEY"
+      }
+    }
+  },
+
+  "agents": {
+    "defaults": {
+      "workspace": "~/clawd",
+      "model": "anthropic/claude-sonnet-4-5",
+      "contextTokens": 200000,
+      "heartbeat": {
+        "every": "30m"
+      }
+    }
+  },
+
+  "channels": {
+    "discord": {
+      "enabled": true,
+      "token": "YOUR_DISCORD_BOT_TOKEN",
+      "guilds": {
+        "YOUR_GUILD_ID": {
+          "users": ["YOUR_DISCORD_USER_ID"],
+          "channels": {
+            "YOUR_INBOX_CHANNEL_ID": {
+              "requireMention": false,
+              "systemPrompt": "You are in inbox mode. Process brain dumps quickly. Identify actionable items vs reference vs noise. Keep responses brief."
+            },
+            "YOUR_WORKBENCH_CHANNEL_ID": {
+              "requireMention": false,
+              "systemPrompt": "You are in workbench mode. Full work sessions allowed. Help create content, solve problems, brainstorm. Longer responses OK."
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback"
+  },
+
+  "tools": {
+    "web": {
+      "search": {
+        "provider": "brave",
+        "apiKey": "YOUR_BRAVE_API_KEY"
+      }
+    },
+    "exec": {
+      "security": "allowlist"
+    }
+  }
+}
